@@ -7,7 +7,7 @@ interface ProfileProps {
 }
 
 
-function Profile() {
+const Profile: React.FC = () => {
     const {name, age} = useSelector((state: ProfileProps) => state)
     const dispatch = useDispatch();
 

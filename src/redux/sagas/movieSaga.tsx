@@ -7,7 +7,9 @@ function* onLoadMoviesAsync(action: any) { // worker saga
     const movieName = action.payload;
     const response = yield call(fetchMovie, movieName);
     if (response.status === 200) {
-      yield put(setMovies([...response.data]));
+      // console.log('response.data', response.data)
+      // yield put(setMovies([...response.data.Search]));
+      yield put(setMovies({...response.data}));
     }
   } catch (e) {
     console.log("error", e);

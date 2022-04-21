@@ -12,7 +12,7 @@ const store = configureStore({
     reducer: {
         movie: MovieReducer
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware, logger)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware)
 });
 
 

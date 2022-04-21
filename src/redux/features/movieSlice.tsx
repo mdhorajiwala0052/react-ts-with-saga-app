@@ -1,21 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface MovieState {
     movieList: Array<Object>;
     movieDetail: Object;
+    keyword: string;
 }
 
 const initialState = {
     movieList: [],
     movieDetail: {},
+    keyword: ""
 } as MovieState;
 
 const movieSlice = createSlice({
     name: "movie",
     initialState,
     reducers: {
-        getMovies(name) {
-            return name;
+        getMovies: (state, action: PayloadAction<string>) => {
+            state.keyword = action.payload;
         },
         setMovies: (state, action) => {
             state.movieList = action.payload;
