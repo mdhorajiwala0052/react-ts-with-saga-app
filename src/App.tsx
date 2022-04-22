@@ -3,7 +3,7 @@ import './App.css';
 import Profile from "./components/Profile";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
-import Movie from './pages/Movie';
+import MovieDetail from '../src/components/MovieDetail';
 
 
 const App: React.FC =()=> {
@@ -12,7 +12,7 @@ const App: React.FC =()=> {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/movie/:id" element={<Movie />} />
+          <Route path="/movie/:id" element={<MovieDetail />} />
         </Routes>
       </BrowserRouter>
     </div>

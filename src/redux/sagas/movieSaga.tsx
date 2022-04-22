@@ -1,6 +1,6 @@
 import { call, put, fork, takeLatest } from "redux-saga/effects";
-import { fetchMovie } from "../../helpers/api";
-import { getMovies, setMovies } from "../features/movieSlice";
+import { fetchMovie, fetchMovieDetail } from "../../helpers/api";
+import { getMovieDetail, getMovies, setMovies, setMovieDetail } from "../features/movieSlice";
 
 function* onLoadMoviesAsync(action: any) { // worker saga
   try {
@@ -16,8 +16,26 @@ function* onLoadMoviesAsync(action: any) { // worker saga
   }
 }
 
+function* onLoadMovieDetailAsync(action: any) { // worker saga
+  try {
+    const movieId = action.payload;
+    const response = yield call(fetchMovieDetail, movieId);
+    if (response.status === 200) {
+      // console.log('response.data', response.data)
+      // yield put(setMovies([...response.data.Search]));
+      yield put(setMovieDetail({...response.data}));
+    }
+  } catch (e) {
+    console.log("error", e);
+  }
+}
+
 function* onLoadMovies() { // watcher saga
     yield takeLatest(getMovies.type, onLoadMoviesAsync);
 }
 
-export const movieSaga = [fork(onLoadMovies)];
+function* onLoadMovieDetail() { // watcher saga
+  yield takeLatest(getMovieDetail.type, onLoadMovieDetailAsync);
+}
+
+export const movieSaga = [fork(onLoadMovies), fork(onLoadMovieDetail)];

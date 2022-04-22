@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardMedia, CardContent, Typography, Grid } from "@mui/material";
-import { useSelector } from 'react-redux'
+import { useAppSelector } from '../types/hooks'
+
 import { Link } from "react-router-dom";
 import noImage from '../assets/images/noimage.jpg'
 
@@ -9,7 +10,7 @@ import noImage from '../assets/images/noimage.jpg'
 
 const MoviesList: React.FC = () => {
 
-    const {movieList: {Search: list}} = useSelector((state: any) => ({...state.movie}));
+    const {movieList: {Search: list}} = useAppSelector((state: any) => ({...state.movie}));
   return (
     <>
         <Grid sx={{flexGrow: 1 }}  container>
@@ -28,11 +29,11 @@ const MoviesList: React.FC = () => {
                                 />
 
                                 <CardContent>
-                                    <Typography  variant="body2" color="blue">
+                                    <Typography variant="body2" color="blue">
                                         {item.Title}
                                         </Typography>
 
-                                        <Typography  variant="body2" color="blue">
+                                        <Typography variant="body2" color="blue">
                                         {item.Year}
                                         </Typography>
                                 </CardContent>
