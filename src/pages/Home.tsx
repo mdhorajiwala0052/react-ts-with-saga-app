@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {FC} from 'react'
 import Search from '../components/Search'
 import MoviesList from '../components/MoviesList'
-const Home: React.FC  = () =>{
+const Home: FC  = () =>{
   return (
     <div>
         <Search/>

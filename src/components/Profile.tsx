@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 interface ProfileProps {
@@ -7,7 +7,7 @@ interface ProfileProps {
 }
 
 
-const Profile: React.FC = () => {
+const Profile: FC = () => {
     const {name, age} = useSelector((state: ProfileProps) => state)
     const dispatch = useDispatch();
 

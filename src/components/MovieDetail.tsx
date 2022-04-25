@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../types/hooks'
 import { Typography, Button } from '@mui/material';
 import { getMovieDetail } from '../redux/features/movieSlice';
 import noImage from '../assets/images/noimage.jpg'
 
-const MovieDetail: React.FC = () => {
+const MovieDetail: FC = () => {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();

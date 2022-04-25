@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Card, CardMedia, CardContent, Typography, Grid } from "@mui/material";
 import { useAppSelector } from '../types/hooks'
 
@@ -8,7 +8,7 @@ import noImage from '../assets/images/noimage.jpg'
 // import noImage from "../../src/assets/images/noimage.jpg";
 
 
-const MoviesList: React.FC = () => {
+const MoviesList: FC = () => {
 
     const {movieList: {Search: list}} = useAppSelector((state: any) => ({...state.movie}));
   return (

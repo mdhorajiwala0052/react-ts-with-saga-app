@@ -1,10 +1,10 @@
-import React, {useState, useEffect, ChangeEvent} from 'react'
+import React, { FC, useState, useEffect, ChangeEvent} from 'react'
 // import { TextField } from "@mui/material";
 import { getMovies } from '../redux/features/movieSlice';
 import { useAppSelector, useAppDispatch } from '../types/hooks'
 
 
-const Search : React.FC = () => {
+const Search : FC = () => {
   const [keyword, setKeyword] = useState<string>('captain');
 
   const dispatch = useAppDispatch();
