@@ -10,3 +10,9 @@ export interface IformControlProps {
     handleChange: MyHandleChangeFunctionType, 
     value: string 
 }
+
+export interface TextFieldProps {
+    label: string,
+    name: string,
+    type: ComponentProps<typeof Input>['type'],
+}

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { FormGroup, Input, Label, FormFeedback } from 'reactstrap'
 
-import { IformControlProps } from '../types'
+import { IformControlProps } from '../../types'
 
 const FormControl: FC<IformControlProps> = (props) => {
     const { label, type, error, handleChange, value } = props

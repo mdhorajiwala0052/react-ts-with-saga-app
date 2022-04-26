@@ -37,5 +37,11 @@
   }
 }
 
+.error{
+  color: red;
+  position: absolute;
+  font-size: .6rem;
+}
+
 
 
