@@ -1,5 +1,12 @@
-import firebase from "firebase/app";
-import "firebase/auth";
+// import firebase from "firebase/app";
+// import "firebase/auth";
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+} from "firebase/auth";
+import App from "./App";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -11,10 +18,25 @@ const firebaseConfig = {
   appId: "1:696869977573:web:9e1c9e905b52de649f830c",
 };
 
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const googleAuthProvider = new GoogleAuthProvider();
 
-const auth = firebase.auth();
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+// const error = new FirebaseError("Error message", {
+//   code: "auth/invalid-email",
+//   message: "The email address is badly formatted.",
+//   name: "Error",
+//   stack: "Error: The email address is badly formatted.",
+// });
+// const googleAuthProvider = new auth.GoogleAuthProvider();
+// const facebookAuthProvider = new auth.FacebookAuthProvider();
 
-export { auth, googleAuthProvider, facebookAuthProvider };
+// export default auth;
+
+// firebase.initializeApp(firebaseConfig);
+
+// const auth = firebase.auth();
+// const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+// const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+
+// export { auth, googleAuthProvider, facebookAuthProvider };

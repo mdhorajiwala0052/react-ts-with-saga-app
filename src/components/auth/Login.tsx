@@ -1,12 +1,26 @@
-import React, { FC, ChangeEvent, useState, useEffect } from "react";
+import React, { FC, ChangeEvent, useState, useEffect, ReactNode } from "react";
 // import { Form, Row, Col, Button } from "reactstrap";
 // import FormControl from '../shared/FormControl'
-import { Link } from "react-router-dom";
-import { Formik, Form } from "formik";
+import { useNavigate, Link } from "react-router-dom";
+import { Formik, Form, FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
 import TextField from "../../components/shared/TextField";
+import { useAppDispatch, useAppSelector } from "../../types/hooks";
+import { ITextFieldProps } from "../../types";
 
 const Login: FC = () => {
+  const dispatch = useAppDispatch();
+  const { loading, currentUser, error } = useAppSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser]);
+
+  console.log("currentUser", currentUser);
+
   // const [state, setState] = useState({
   //     email: '',
   //     password: '',
@@ -29,10 +43,8 @@ const Login: FC = () => {
       .required("Required"),
   });
 
-  const handleSubmit = (e: any): void => {
-    e.preventDefault();
-    let isError = false;
-    // console.log("state", state);
+  const login = (values: Object): void => {
+    console.log(values, "handleSubmit");
   };
 
   return (
@@ -43,10 +55,11 @@ const Login: FC = () => {
       }}
       validationSchema={validate}
       onSubmit={(values) => {
-        console.log(values, "values");
+        login(values);
       }}
     >
-      {/* {formik => { */}
+      {/* {(formik) => console.log("formik", formik)}  have to resolve this error */}
+
       <div>
         <h1 className="my-4 font-weight-bold .display-4">Sign In</h1>
         <Form>
@@ -57,7 +70,6 @@ const Login: FC = () => {
           </button>
         </Form>
       </div>
-      {/* //  }} */}
     </Formik>
 
     // <Row>
