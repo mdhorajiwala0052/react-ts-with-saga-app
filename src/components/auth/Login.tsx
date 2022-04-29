@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import TextField from "../../components/shared/TextField";
 import { useAppDispatch, useAppSelector } from "../../types/hooks";
 import { ITextFieldProps } from "../../types";
+import { loginInitiate } from "../../redux/features/userSlice";
 
 const Login: FC = () => {
   const dispatch = useAppDispatch();
@@ -44,7 +45,7 @@ const Login: FC = () => {
   });
 
   const login = (values: Object): void => {
-    console.log(values, "handleSubmit");
+    dispatch(loginInitiate(values));
   };
 
   return (

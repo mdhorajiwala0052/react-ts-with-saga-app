@@ -16,7 +16,7 @@ const Register: FC = () => {
     if (currentUser) {
       navigate("/");
     }
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
   const validate = Yup.object({
     fullName: Yup.string()
@@ -48,8 +48,16 @@ const Register: FC = () => {
         confirmPassword: "",
       }}
       validationSchema={validate}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         register(values);
+        resetForm({
+          values: {
+            fullName: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          },
+        });
       }}
     >
       {/* {(formik) => console.log("formik", formik)}  have to resolve this error */}
