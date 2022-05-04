@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserState } from "../../types";
+import * as Alert from "../../redux/features/alertSlice";
 
 const initialState = {
   loading: false,

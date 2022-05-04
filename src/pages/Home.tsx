@@ -9,7 +9,7 @@ const Home: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user: any) => {
+    onAuthStateChanged(auth, (user: any): void => {
       if (user) {
         dispatch(setUser(user));
       } else {

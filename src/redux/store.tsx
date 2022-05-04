@@ -4,6 +4,7 @@ import createSagaMiddleware from "redux-saga";
 import MovieReducer from "./features/movieSlice";
 import rootSaga from "./sagas/rootSaga";
 import UserReducer from "./features/userSlice";
+import AlertReducer from "./features/alertSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -11,6 +12,7 @@ const store = configureStore({
   reducer: {
     movie: MovieReducer,
     user: UserReducer,
+    alert: AlertReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(sagaMiddleware),

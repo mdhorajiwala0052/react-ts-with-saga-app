@@ -4,8 +4,8 @@ import Profile from "./components/Profile";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MovieDetail from "../src/components/MovieDetail";
-import Header from "../src/components/shared/layout/Header";
-import Footer from "../src/components/shared/layout/Footer";
+import Header from "./components/shared/layouts/Header";
+import Footer from "./components/shared/layouts/Footer";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 

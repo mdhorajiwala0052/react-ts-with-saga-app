@@ -13,6 +13,8 @@ import {
   logoutSuccess,
   logoutFailure,
 } from "../features/userSlice";
+import { setAlert } from "../features/alertSlice";
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -31,9 +33,22 @@ function* userSingupAsync(action: any) {
       userDetail.password
     );
     yield put(registerSuccess(user));
+    yield put(
+      setAlert({
+        text: "User registered successfully",
+        color: "success",
+      })
+    );
   } catch (e: any) {
-    console.log("error", e.message);
-    yield put(registerFailure(e.message));
+    const error = JSON.parse(JSON.stringify(e.code));
+    // console.log("error", JSON.parse(JSON.stringify(e.code)));
+    yield put(registerFailure(error));
+    yield put(
+      setAlert({
+        text: error,
+        color: "danger",
+      })
+    );
   }
 }
 
@@ -48,6 +63,12 @@ function* userLoginAsync(action: any) {
       userDetail.password
     );
     yield put(loginSuccess(user));
+    yield put(
+      setAlert({
+        text: "User loggoed in successfully",
+        color: "success",
+      })
+    );
   } catch (e: any) {
     console.log("error", e.message);
     yield put(loginFailure(e.message));
@@ -59,6 +80,12 @@ function* userLogoutAsync(action: any) {
   try {
     yield call(signOut, auth);
     yield put(logoutSuccess());
+    yield put(
+      setAlert({
+        text: "User loggoed out successfully",
+        color: "success",
+      })
+    );
   } catch (e: any) {
     console.log("error", e.message);
     yield put(logoutFailure(e.message));
