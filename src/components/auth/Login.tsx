@@ -8,6 +8,7 @@ import TextField from "../../components/shared/TextField";
 import { useAppDispatch, useAppSelector } from "../../types/hooks";
 import { ITextFieldProps } from "../../types";
 import { loginInitiate } from "../../redux/features/userSlice";
+import Loader from "../shared/Loader";
 
 const Login: FC = () => {
   const dispatch = useAppDispatch();
@@ -67,7 +68,7 @@ const Login: FC = () => {
           <TextField label="Email" name="email" type="email" />
           <TextField label="Password" name="password" type="password" />
           <button className="btn btn-danger mt-3 ml-3" type="submit">
-            Submit
+            {loading ? <Loader /> : "Submit"}
           </button>
         </Form>
       </div>

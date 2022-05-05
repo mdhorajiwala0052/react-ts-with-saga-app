@@ -7,13 +7,13 @@ const header: FC = () => {
   return (
     <>
       <Row>
-        <Col xs={8}>
+        {/* <Col xs={8}>
           <h1>Movie Mania</h1>
-        </Col>
+        </Col> */}
 
-        <Col>
-          <Navbar />
-        </Col>
+        {/* <Col> */}
+        <Navbar />
+        {/* </Col> */}
       </Row>
 
       <hr />

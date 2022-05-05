@@ -1,47 +1,59 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from '../types/hooks'
-import { Typography, Button } from '@mui/material';
-import { getMovieDetail } from '../redux/features/movieSlice';
-import noImage from '../assets/images/noimage.jpg'
+import { useAppSelector, useAppDispatch } from "../types/hooks";
+import { Typography, Button } from "@mui/material";
+import { getMovieDetail } from "../redux/features/movieSlice";
+import noImage from "../assets/images/noimage.jpg";
+import Loader from "../components/shared/Loader";
 
 const MovieDetail: FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { movieDetail, loading } = useAppSelector((state: any) => ({
+    ...state.movie,
+  }));
 
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-    const { id } = useParams();
-    const {movieDetail} = useAppSelector((state: any) => ({...state.movie}));
-
-    useEffect(() => {
-        if (id) {
-            dispatch(getMovieDetail(id));
-        }
-    }, [id])
+  useEffect(() => {
+    if (id) {
+      dispatch(getMovieDetail(id));
+    }
+  }, [id]);
   return (
     <>
+      {loading ? (
+        <Loader />
+      ) : (
         <section>
-            <img src={movieDetail?.Poster === 'N/A' ? noImage: movieDetail?.Poster}  alt={movieDetail?.Title} height="350" width="350"/>
-            <div>
-                <Typography align='left' variant="h3" gutterBottom component="h2">
-                    {movieDetail?.Title === 'N/A' ? '--': movieDetail?.Title}
-                </Typography>
-                <Typography align='left' variant="h5" gutterBottom component="h5">
-                    Year: {movieDetail?.Year === 'N/A' ? '--': movieDetail?.Year }
-                </Typography>
-                <Typography align='left' variant="body1" gutterBottom component="p">
-                    {movieDetail?.Plot === 'N/A' ? '--': movieDetail?.Plot }
-                </Typography>
-                <Typography align='left' variant="h6" gutterBottom component="h6">
-                    Director: {movieDetail?.Director === 'N/A' ? '--': movieDetail?.Director}
-                </Typography>
+          <img
+            src={movieDetail?.Poster === "N/A" ? noImage : movieDetail?.Poster}
+            alt={movieDetail?.Title}
+            height="350"
+            width="350"
+          />
+          <div>
+            <Typography align="left" variant="h3" gutterBottom component="h2">
+              {movieDetail?.Title === "N/A" ? "--" : movieDetail?.Title}
+            </Typography>
+            <Typography align="left" variant="h5" gutterBottom component="h5">
+              Year: {movieDetail?.Year === "N/A" ? "--" : movieDetail?.Year}
+            </Typography>
+            <Typography align="left" variant="body1" gutterBottom component="p">
+              {movieDetail?.Plot === "N/A" ? "--" : movieDetail?.Plot}
+            </Typography>
+            <Typography align="left" variant="h6" gutterBottom component="h6">
+              Director:{" "}
+              {movieDetail?.Director === "N/A" ? "--" : movieDetail?.Director}
+            </Typography>
 
-                <Button variant="contained" onClick={() => navigate('/')} >
-                    Go Back
-                </Button>
-            </div>
+            <Button variant="contained" onClick={() => navigate("/")}>
+              Go Back
+            </Button>
+          </div>
         </section>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default MovieDetail
+export default MovieDetail;

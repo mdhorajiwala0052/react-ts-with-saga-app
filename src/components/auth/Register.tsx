@@ -6,6 +6,7 @@ import { TextFieldProps } from "../../types";
 import { useAppDispatch, useAppSelector } from "../../types/hooks";
 import { useNavigate } from "react-router-dom";
 import { registerInitiate } from "../../redux/features/userSlice";
+import Loader from "../shared/Loader";
 
 const Register: FC = () => {
   const dispatch = useAppDispatch();
@@ -75,7 +76,7 @@ const Register: FC = () => {
             type="password"
           />
           <button className="btn btn-danger mt-3 ml-3" type="submit">
-            Submit
+            {loading ? <Loader /> : "Submit"}
           </button>
         </Form>
       </div>

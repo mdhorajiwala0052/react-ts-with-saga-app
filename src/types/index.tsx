@@ -27,6 +27,7 @@ export interface ITextFieldProps extends FormikProps<TextFieldProps> {
 export interface MovieState {
   movieList: Array<Object>;
   movieDetail: Object;
+  loading: boolean;
 }
 
 export interface UserState {
