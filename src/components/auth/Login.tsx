@@ -7,7 +7,10 @@ import * as Yup from "yup";
 import TextField from "../../components/shared/TextField";
 import { useAppDispatch, useAppSelector } from "../../types/hooks";
 import { ITextFieldProps } from "../../types";
-import { loginInitiate } from "../../redux/features/userSlice";
+import {
+  loginInitiate,
+  googleSignInRequest,
+} from "../../redux/features/userSlice";
 import Loader from "../shared/Loader";
 
 const Login: FC = () => {
@@ -21,7 +24,7 @@ const Login: FC = () => {
     }
   }, [currentUser]);
 
-  console.log("currentUser", currentUser);
+  // console.log("currentUser", currentUser);
 
   // const [state, setState] = useState({
   //     email: '',
@@ -49,6 +52,10 @@ const Login: FC = () => {
     dispatch(loginInitiate(values));
   };
 
+  const handleGoogleSignIn = (): void => {
+    dispatch(googleSignInRequest());
+  };
+
   return (
     <Formik
       initialValues={{
@@ -60,10 +67,20 @@ const Login: FC = () => {
         login(values);
       }}
     >
-      {/* {(formik) => console.log("formik", formik)}  have to resolve this error */}
-
+      {/* {({ values }) => console.log("values", values)} have to resolve this error */}
       <div>
         <h1 className="my-4 font-weight-bold .display-4">Sign In</h1>
+
+        <button
+          type="button"
+          className="login-with-google-btn"
+          onClick={handleGoogleSignIn}
+        >
+          Sign in with Google
+        </button>
+
+        <p className="text-center">or</p>
+
         <Form>
           <TextField label="Email" name="email" type="email" />
           <TextField label="Password" name="password" type="password" />

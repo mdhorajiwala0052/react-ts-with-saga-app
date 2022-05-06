@@ -57,6 +57,20 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    googleSingInInitiate: (state) => {
+      return;
+    },
+    googleSignInRequest: () => {
+      // state.loading = true;
+    },
+    googleSingInSuccess: (state, action: PayloadAction<object>) => {
+      state.loading = false;
+      state.currentUser = action.payload;
+    },
+    googleSignInFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -74,6 +88,10 @@ export const {
   loginRequest,
   loginSuccess,
   loginFailure,
+  googleSingInInitiate,
+  googleSignInRequest,
+  googleSingInSuccess,
+  googleSignInFailure,
 } = userSlice.actions;
 
 export default userSlice.reducer;

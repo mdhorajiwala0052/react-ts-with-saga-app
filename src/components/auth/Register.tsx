@@ -35,7 +35,7 @@ const Register: FC = () => {
       .required("Required"),
   });
 
-  const register = (values): void => {
+  const register = (values: object): void => {
     // console.log(values.password, "handleSubmit");
     dispatch(registerInitiate(values));
   };
@@ -51,14 +51,17 @@ const Register: FC = () => {
       validationSchema={validate}
       onSubmit={(values, { resetForm }) => {
         register(values);
-        resetForm({
-          values: {
-            fullName: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-          },
-        });
+
+        if (!error) {
+          resetForm({
+            values: {
+              fullName: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+            },
+          });
+        }
       }}
     >
       {/* {(formik) => console.log("formik", formik)}  have to resolve this error */}

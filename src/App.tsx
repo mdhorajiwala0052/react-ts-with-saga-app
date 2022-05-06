@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Profile from "./components/Profile";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import MovieDetail from "../src/components/MovieDetail";
 import Header from "./components/shared/layouts/Header";
@@ -26,6 +26,7 @@ const App: React.FC = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/movie/:id" element={<MovieDetail />} />
+              <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </div>
         </div>
